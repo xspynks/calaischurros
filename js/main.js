@@ -47,7 +47,7 @@ function initializeCanvas(imageCanvas, scratchCanvas) {
       y = event.offsetY;
     }
 
-    scratchCtx.lineWidth = 40;
+    scratchCtx.lineWidth = 60;
     scratchCtx.lineCap = "round";
 
     scratchCtx.lineTo(x, y);
