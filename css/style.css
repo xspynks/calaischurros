@@ -110,7 +110,7 @@ header h2 {
 
 .raspadinha-container {
   position: relative;
-  background-image: url(/images/border.png);
+  background-image: url(../images/border.png);
   background-size: contain;
   background-repeat: no-repeat;
   width: 384px; /* Adjust width if necessary */
