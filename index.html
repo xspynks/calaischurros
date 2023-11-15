@@ -1,126 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digital Scratch Card</title>
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #044275;
-      }
-      #container {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      canvas {
-        position: absolute;
-        border: 4px solid #000;
-        touch-action: none; /* Prevent scrolling and zooming on touch */
-      }
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Rafael de Paula Barbosa" />
+    <title>Calais Churros</title>
+
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div id="container">
-      <canvas id="imageCanvas" width="400" height="396"></canvas>
-      <canvas id="scratchCanvas" width="400" height="396"></canvas>
+    <div id="conteudo">
+      <header>
+        <img src="images/header.png" />
+      </header>
+      <div class="raspadinha-container">
+        <canvas id="imageCanvas" width="354" height="206"></canvas>
+        <canvas id="scratchCanvas" width="354" height="206"></canvas>
+      </div>
+      <footer>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-arrow-up-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8
+            0zm3.354 5.646a.5.5 0 0 1 .146.353v4.5a.5.5
+            0 0 1-.854.353L8 8.207l-2.646
+            2.292a.5.5 0 0 1-.708-.708l3-3a.5.5
+            0 0 1 .708 0l3 3a.5.5 0 0 1
+            0 .708l-.353.353z"
+          />
+        </svg>
+        <h3>RASPE AQUI</h3>
+        <p>PROMOÇÃO VÁLIDA ATÉ 30/11/2023</p>
+
+        <section class="rodape">
+          <p>
+            Apresente esse cupom em uma de nossas lojas físicas para receber o
+            seu presente.
+          </p>
+        </section>
+      </footer>
     </div>
-
-    <script>
-      const imageCanvas = document.getElementById("imageCanvas");
-      const scratchCanvas = document.getElementById("scratchCanvas");
-      const imageCtx = imageCanvas.getContext("2d");
-      const scratchCtx = scratchCanvas.getContext("2d");
-
-      let isDrawing = false;
-
-      function startDrawing(event) {
-        if (event.type === "touchstart") {
-          event.preventDefault();
-        }
-        isDrawing = true;
-        scratchCtx.globalCompositeOperation = "destination-out";
-        draw(event);
-      }
-
-      function stopDrawing(event) {
-        if (event.type === "touchend") {
-          event.preventDefault();
-        }
-        isDrawing = false;
-        scratchCtx.beginPath();
-      }
-
-      function draw(event) {
-        if (!isDrawing) return;
-
-        let x, y;
-        if (event.type === "touchmove" || event.type === "touchstart") {
-          event.preventDefault(); // Prevent the default behavior
-          x =
-            event.touches[0].pageX - scratchCanvas.getBoundingClientRect().left;
-          y =
-            event.touches[0].pageY - scratchCanvas.getBoundingClientRect().top;
-        } else {
-          x = event.offsetX;
-          y = event.offsetY;
-        }
-
-        scratchCtx.lineWidth = 20;
-        scratchCtx.lineCap = "round";
-
-        scratchCtx.lineTo(x, y);
-        scratchCtx.stroke();
-        scratchCtx.beginPath();
-        scratchCtx.moveTo(x, y);
-      }
-
-      const image = new Image();
-      image.src = "bloquinho.png";
-      image.onload = function () {
-        // Draw the image
-        imageCtx.drawImage(
-          image,
-          0,
-          0,
-          imageCanvas.width,
-          imageCanvas.height,
-          0,
-          0,
-          imageCanvas.width,
-          imageCanvas.height
-        );
-
-        // Cover the image with a gray mask
-        scratchCtx.fillStyle = "#3f3e3e";
-        scratchCtx.fillRect(0, 0, scratchCanvas.width, scratchCanvas.height);
-
-        // Draw the prize text on top of the gray mask
-        scratchCtx.font = "30px Arial";
-        scratchCtx.fillStyle = "#ffffff";
-        scratchCtx.fillText(
-          "Raspe Aqui E Garanta O Seu Ingresso!",
-          25,
-          180,
-          scratchCanvas.width - 50
-        );
-      };
-
-      scratchCanvas.addEventListener("mousedown", startDrawing);
-      scratchCanvas.addEventListener("mouseup", stopDrawing);
-      scratchCanvas.addEventListener("mousemove", draw);
-      scratchCanvas.addEventListener("touchstart", startDrawing, {
-        passive: false,
-      });
-      scratchCanvas.addEventListener("touchend", stopDrawing, {
-        passive: false,
-      });
-      scratchCanvas.addEventListener("touchmove", draw, { passive: false });
-    </script>
+    <script src="js/main.js"></script>
   </body>
 </html>
