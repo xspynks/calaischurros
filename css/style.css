@@ -48,6 +48,10 @@
 }
 
 /* Reset básico para garantir consistência entre navegadores */
+:root {
+  color-scheme: only light;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -169,6 +173,39 @@ header textPath {
 }
 
 @media screen and (max-width: 1024px) {
-  footer {
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+  header img {
+    max-width: 200px;
+  }
+
+  #conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  header textPath {
+    font-size: 16px;
+  }
+
+  header img {
+    max-width: 300px;
+  }
+
+  footer h3 {
+    font-size: 24px;
+  }
+
+  footer p {
+    font-size: 14px;
+  }
+
+  .rodape p {
+    font-size: 14px;
   }
 }
