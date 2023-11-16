@@ -55,28 +55,24 @@ function initializeCanvas(imageCanvas, scratchCanvas) {
   }
 
   const image = new Image();
-  image.src = "images/bloquinho.png";
+  image.src = "images/texto_promo.png";
+
   image.onload = function () {
-    imageCtx.drawImage(
-      image,
-      0,
-      0,
-      imageCanvas.width,
-      imageCanvas.height,
-      0,
-      0,
-      imageCanvas.width,
-      imageCanvas.height
-    );
+    const imageWidth = imageCanvas.width * 0.8; // 80% of canvas width
+    const imageHeight = (imageWidth / image.width) * image.height; // Keep aspect ratio
+    const posX = (imageCanvas.width - imageWidth) / 2; // Center horizontally
+    const posY = (imageCanvas.height - imageHeight) / 2; // Center vertically
+
+    imageCtx.drawImage(image, posX, posY, imageWidth, imageHeight);
 
     scratchCtx.fillStyle = "#3f3e3e";
     scratchCtx.fillRect(0, 0, scratchCanvas.width, scratchCanvas.height);
 
-    scratchCtx.font = "24px Arial";
-    scratchCtx.fillStyle = "#ffffff";
-    scratchCtx.textAlign = "center";
-    scratchCtx.textBaseline = "middle";
-    scratchCtx.fillText("", scratchCanvas.width / 2, scratchCanvas.height / 2);
+    // scratchCtx.font = "24px Arial";
+    // scratchCtx.fillStyle = "#ffffff";
+    // scratchCtx.textAlign = "center";
+    // scratchCtx.textBaseline = "middle";
+    // scratchCtx.fillText("", scratchCanvas.width / 2, scratchCanvas.height / 2);
   };
 
   scratchCanvas.addEventListener("mousedown", startDrawing);
