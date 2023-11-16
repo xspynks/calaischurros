@@ -48,8 +48,12 @@
 }
 
 /* Reset básico para garantir consistência entre navegadores */
-:root {
-  color-scheme: only light;
+/* force light mode only for all devices */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #ed6b6e;
+    color: #fff9e5;
+  }
 }
 
 * {
@@ -172,10 +176,6 @@ header textPath {
   font-weight: 200;
 }
 
-@media screen and (max-width: 1024px) {
-}
-
-/* mobile */
 @media screen and (max-width: 768px) {
   header img {
     max-width: 200px;
