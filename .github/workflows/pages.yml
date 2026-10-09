@@ -36,6 +36,24 @@ jobs:
         with:
           path: _site
 
+      - name: Use the Actions Pages source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          echo "===== GET /pages ====="
+          gh api "repos/${GITHUB_REPOSITORY}/pages"
+          echo "===== PUT build_type=workflow public=true ====="
+          gh api --method PUT "repos/${GITHUB_REPOSITORY}/pages" \
+            -f build_type=workflow \
+            -F public=true
+          echo "===== POST /pages build_type=workflow ====="
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages" \
+            -f build_type=workflow
+          echo "===== GET /pages after ====="
+          gh api "repos/${GITHUB_REPOSITORY}/pages"
+          exit 0
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
