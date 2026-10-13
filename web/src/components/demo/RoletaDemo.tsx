@@ -18,7 +18,7 @@ const slice = 360 / segments.length
 export function RoletaDemo({ serial }: DemoProps) {
   const reduced = useReducedMotion()
   const pending = useRef<number | null>(null)
-  const [rotation, setRotation] = useState(0)
+  const [rotation, setRotation] = useState(-45)
   const [spinning, setSpinning] = useState(false)
   const [winner, setWinner] = useState<number | null>(null)
   const motion = reduced ? 'none' : `transform ${SPIN_MS}ms ${EASING}`

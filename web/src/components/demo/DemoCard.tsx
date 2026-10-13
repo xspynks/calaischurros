@@ -30,7 +30,7 @@ export function DemoCard({
           {children}
         </div>
         <figcaption className="flex items-center justify-between gap-3 px-2 pt-3 pb-1 text-sm text-[#140e09]/70">
-          <span>Demonstração. Isto não é um cupom.</span>
+          <span className="min-w-0">Demonstração. Isto não é um cupom.</span>
           {action}
         </figcaption>
       </div>
@@ -45,7 +45,7 @@ export function DemoAction({ className, ...props }: ButtonHTMLAttributes<HTMLBut
       type="button"
       className={cn(
         demoFocus,
-        'font-semibold text-[#140e09] underline decoration-[#140e09]/30 underline-offset-4 disabled:cursor-wait disabled:opacity-40',
+        'shrink-0 font-semibold whitespace-nowrap text-[#140e09] underline decoration-[#140e09]/30 underline-offset-4 disabled:cursor-wait disabled:opacity-40',
         className,
       )}
     />
