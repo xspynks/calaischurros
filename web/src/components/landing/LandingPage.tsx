@@ -24,6 +24,9 @@ export function LandingPage() {
             <a href="#modelos" className="hover:text-[#f4ead8]">
               Modelos
             </a>
+            <a href="demo.html" className="hover:text-[#f4ead8]">
+              Demonstrações
+            </a>
             <a href="#como-funciona" className="hover:text-[#f4ead8]">
               Como funciona
             </a>
@@ -86,18 +89,26 @@ export function LandingPage() {
               Raspadinha e roleta abrem o produto. Os outros cinco ficam visíveis para a sequência,
               um modelo de cada vez.
             </p>
+            <a href="demo.html" className="mt-6 inline-block text-sm font-semibold text-[#e3b15a] underline">
+              Experimentar roleta, caixa, quiz, memória, grade e slot
+            </a>
           </div>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {templates.map((template) => (
-              <li
-                key={template.name}
-                className="rounded-3xl border border-[#f4ead8]/12 bg-[#1d140e] p-6"
-              >
-                <p className="text-xs font-semibold tracking-[0.16em] text-[#e3b15a] uppercase">
-                  {template.title}
-                </p>
-                <h3 className="font-display mt-3 text-3xl">{template.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#f4ead8]/70">{template.body}</p>
+              <li key={template.id}>
+                <a
+                  href={template.id === 'raspadinha' ? '#topo' : `demo.html#${template.id}`}
+                  className="block h-full rounded-3xl border border-[#f4ead8]/12 bg-[#1d140e] p-6 transition hover:border-[#e3b15a]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e3b15a]"
+                >
+                  <p className="text-xs font-semibold tracking-[0.16em] text-[#e3b15a] uppercase">
+                    {template.title}
+                  </p>
+                  <h3 className="font-display mt-3 text-3xl">{template.name}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#f4ead8]/70">{template.body}</p>
+                  <p className="mt-6 text-sm font-semibold text-[#e3b15a]">
+                    {template.id === 'raspadinha' ? 'Ver demonstração' : 'Experimentar'}
+                  </p>
+                </a>
               </li>
             ))}
           </ul>

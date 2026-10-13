@@ -1,47 +1,66 @@
 export const templates = [
   {
+    id: 'raspadinha',
     name: 'Raspadinha',
     title: 'Primeiro modelo',
     quote: 'A pessoa remove a cobertura e encontra o prêmio.',
     body: 'O modelo que originou o produto. Uma cobertura, um resultado, um link para compartilhar.',
   },
   {
+    id: 'roleta',
     name: 'Roleta',
     title: 'Segundo modelo',
     quote: 'A roda para no prêmio que já foi sorteado.',
     body: 'Os nomes dos prêmios aparecem na roda. O peso de cada um fica no servidor.',
   },
   {
+    id: 'caixa',
     name: 'Caixa de presente',
     title: 'Depois',
     quote: 'Abrir a caixa é o momento da promoção.',
     body: 'Entra no catálogo junto com os outros modelos que vêm na sequência.',
   },
   {
+    id: 'quiz',
     name: 'Quiz',
     title: 'Depois',
     quote: 'Algumas perguntas e um resultado no fim.',
     body: 'Serve para quem quer uma conversa curta antes do prêmio.',
   },
   {
+    id: 'memoria',
     name: 'Memória',
     title: 'Depois',
     quote: 'Pares virados até o prêmio aparecer.',
     body: 'Uma interação rápida para quem já conhece o jogo da memória.',
   },
   {
+    id: 'grade',
     name: 'Grade da sorte',
     title: 'Depois',
     quote: 'Uma grade de casas. Uma delas premia.',
     body: 'A pessoa escolhe uma casa e vê o resultado daquela jogada.',
   },
   {
+    id: 'slot',
     name: 'Slot',
     title: 'Depois',
     quote: 'Três colunas param no resultado.',
     body: 'O sorteio continua no servidor. A animação só mostra o que já foi decidido.',
   },
 ] as const
+
+export type Template = (typeof templates)[number]
+export type DemoTemplate = Exclude<Template, { id: 'raspadinha' }>
+export type DemoId = DemoTemplate['id']
+
+export const demoTemplates = templates.filter(
+  (template): template is DemoTemplate => template.id !== 'raspadinha',
+)
+
+export function isDemoId(value: string): value is DemoId {
+  return demoTemplates.some((template) => template.id === value)
+}
 
 export const steps = [
   {
