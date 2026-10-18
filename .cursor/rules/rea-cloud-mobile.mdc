@@ -1,0 +1,27 @@
+---
+description: REA on cloud and mobile agents — MCP must be enabled at run start
+alwaysApply: true
+---
+
+# REA on cloud and mobile
+
+Reverse engineering with REA needs **both** the repo skill and the **rea** MCP server on **this run**.
+
+## New chat / new agent run
+
+Cloud and iOS agents **do not** copy MCP choices from earlier chats. Each new run starts with MCP servers **off** until you turn them on.
+
+Before the first message on a new mobile or cloud run:
+
+1. Open **+ → MCP Servers** and enable **rea** (same account as cursor.com/agents).
+2. Use branch **main** so `.cursor/skills/reverse-engineer-anything/` is present.
+3. For REA-heavy work, invoke **`/reverse-engineer-anything`** so the workflow loads explicitly.
+
+## If REA tools are missing
+
+When the tool list has no `rea` / REA MCP tools, **stop and tell the user**:
+
+- They must **start a new agent run** (or go back to launch) and enable **rea** under **MCP Servers** before continuing.
+- Skills alone do not add MCP tools; dashboard MCP registration does not auto-enable per run on mobile.
+
+Do not pretend REA analysis is available without those tools.
