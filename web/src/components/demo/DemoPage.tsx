@@ -9,12 +9,14 @@ import { GiftDemo } from './GiftDemo.tsx'
 import { GridDemo } from './GridDemo.tsx'
 import { MemoryDemo } from './MemoryDemo.tsx'
 import { QuizDemo } from './QuizDemo.tsx'
+import { RaspadinhaDemo } from './RaspadinhaDemo.tsx'
 import { RoletaDemo } from './RoletaDemo.tsx'
 import { SlotDemo } from './SlotDemo.tsx'
 
 const exampleHref = 'reference/calais/index.html'
 
 const views: Record<DemoId, ComponentType<DemoProps>> = {
+  raspadinha: RaspadinhaDemo,
   roleta: RoletaDemo,
   caixa: GiftDemo,
   quiz: QuizDemo,
@@ -30,7 +32,7 @@ function serialFor(id: DemoId) {
 
 function hashDemo(): DemoId {
   const id = window.location.hash.slice(1)
-  return isDemoId(id) ? id : 'roleta'
+  return isDemoId(id) ? id : 'raspadinha'
 }
 
 function useActiveDemo() {
@@ -42,7 +44,7 @@ function useActiveDemo() {
       window.cancelAnimationFrame(frame)
       frame = window.requestAnimationFrame(() => {
         const line = window.scrollY + 180
-        let current: DemoId = 'roleta'
+        let current: DemoId = 'raspadinha'
         for (const template of demoTemplates) {
           const element = document.getElementById(template.id)
           if (!element) continue
@@ -159,18 +161,17 @@ export function DemoPage() {
           <div className="relative z-10 mx-auto max-w-3xl px-5">
             <p className="text-xs font-semibold tracking-[0.22em] text-[#e3b15a] uppercase">Demonstrações</p>
             <h1 className="font-display mt-5 max-w-2xl text-5xl leading-[0.95] text-balance sm:text-6xl">
-              Seis modelos para abrir no celular.
+              Sete modelos para abrir no celular.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-[#f4ead8]/75">
-              Roleta, caixa de presente, quiz, memória, grade da sorte e slot. A raspadinha fica na
-              página inicial.
+              Raspadinha, roleta, caixa de presente, quiz, memória, grade da sorte e slot.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#roleta"
+                href="#raspadinha"
                 className="rounded-full bg-[#ff4d2e] px-5 py-3 text-sm font-semibold text-[#1a0b07] transition hover:bg-[#ff6a50]"
               >
-                Começar pela roleta
+                Começar pela raspadinha
               </a>
               <a
                 href="index.html"

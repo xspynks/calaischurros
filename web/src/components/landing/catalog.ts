@@ -51,12 +51,9 @@ export const templates = [
 ] as const
 
 export type Template = (typeof templates)[number]
-export type DemoTemplate = Exclude<Template, { id: 'raspadinha' }>
-export type DemoId = DemoTemplate['id']
+export type DemoId = Template['id']
 
-export const demoTemplates = templates.filter(
-  (template): template is DemoTemplate => template.id !== 'raspadinha',
-)
+export const demoTemplates = templates
 
 export function isDemoId(value: string): value is DemoId {
   return demoTemplates.some((template) => template.id === value)
